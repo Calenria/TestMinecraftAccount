@@ -88,11 +88,9 @@ public class TestAccount {
                     System.out.println("================ ============= ================");
                     System.out.println();
                 } else {
-                    System.out.println();
-                    System.out.println();
                     System.out.println("================ Error on Line " + ++cnt + "/" + lines + " ================");
-                    System.out.println();
-                    System.out.println();
+                    System.out.println("Invalid Line: " + line);
+                    System.out.println("================ ================ ================");
                 }
                 
                 
