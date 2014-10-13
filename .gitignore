@@ -1,4 +1,6 @@
 *.class
+test.txt
+premium.txt
 
 # Package Files #
 *.war
