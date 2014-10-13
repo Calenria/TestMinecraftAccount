@@ -35,7 +35,6 @@ public class TestAccount {
         AuthManager am = new AuthManager();
         SessionResponse response = am.authenticate(accountName, accountPassword, uuid);
         System.out.print("Checking Account: " + accountName + " ...");
-        
         if (response.getErrorMessage().length() == 0) {
             System.out.println("Valid Account!");
             for (Profile profile : response.getAvailableProfiles()) {
@@ -82,10 +81,21 @@ public class TestAccount {
             int cnt = 0;
             while ((line = accounts.readLine()) != null) {
                 String[] credencials = line.split(":");
-                System.out.println("================ Testing " + ++cnt + "/" + lines + " ================");
-                checkAccount(credencials[0].trim(), credencials[1].trim());
-                System.out.println("================ ============= ================");
-                System.out.println();
+                
+                if(credencials.length >= 2) {
+                    System.out.println("================ Testing " + ++cnt + "/" + lines + " ================");
+                    checkAccount(credencials[0].trim(), credencials[1].trim());
+                    System.out.println("================ ============= ================");
+                    System.out.println();
+                } else {
+                    System.out.println();
+                    System.out.println();
+                    System.out.println("================ Error on Line " + ++cnt + "/" + lines + " ================");
+                    System.out.println();
+                    System.out.println();
+                }
+                
+                
                 Thread.sleep(2000);
             }
 
