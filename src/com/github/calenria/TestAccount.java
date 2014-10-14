@@ -85,14 +85,30 @@ public class TestAccount {
                 if(credencials.length >= 2) {
                     cnt = prepareCheck(lines, cnt, credencials);
                 } else if (credencials.length == 1) {
-                    credencials = new String[] {line.trim(),line.trim()};
-                    cnt = prepareCheck(lines, cnt, credencials);
+                    File testPasswords = new File("./passwords.txt");
+                    BufferedReader passwords = new BufferedReader(new FileReader(testPasswords));
+                    String linePw = "";
+                    
+                    System.out.println("================ Testing " + ++cnt + "/" + lines + " ================");
+                    
+                    while ((linePw = passwords.readLine()) != null) {
+                        credencials = new String[] {line.trim(),linePw.trim()};
+                        System.out.println("Test with password: " + linePw.trim());
+                        prepareCheckPasswords(lines, credencials);
+                        
+                        Thread.sleep(2000);
+                    }
+                    
+                    System.out.println("================ ============= ================");
+                    System.out.println();
+                    
+                    passwords.close();
+                    
                 } else {
                     System.out.println("================ Error on Line " + ++cnt + "/" + lines + " ================");
                     System.out.println("Invalid Line: " + line);
                     System.out.println("================ ================ ================");
                 }
-                
                 Thread.sleep(2000);
             }
 
@@ -103,7 +119,11 @@ public class TestAccount {
         }
 
     }
-
+    
+    private static void prepareCheckPasswords(int lines, String[] credencials) {
+        checkAccount(credencials[0].trim(), credencials[1].trim());
+    }
+    
     private static int prepareCheck(int lines, int cnt, String[] credencials) {
         System.out.println("================ Testing " + ++cnt + "/" + lines + " ================");
         checkAccount(credencials[0].trim(), credencials[1].trim());
