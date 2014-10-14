@@ -91,11 +91,16 @@ public class TestAccount {
                     
                     System.out.println("================ Testing " + ++cnt + "/" + lines + " ================");
                     
+                    
+                    credencials = new String[] {line.trim(),line.trim()};
+                    System.out.println("Test with password: " + line.trim());
+                    prepareCheckPasswords(lines, credencials);
+                    Thread.sleep(2000);
+                    
                     while ((linePw = passwords.readLine()) != null) {
                         credencials = new String[] {line.trim(),linePw.trim()};
                         System.out.println("Test with password: " + linePw.trim());
                         prepareCheckPasswords(lines, credencials);
-                        
                         Thread.sleep(2000);
                     }
                     
