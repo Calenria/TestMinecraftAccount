@@ -83,16 +83,15 @@ public class TestAccount {
                 String[] credencials = line.split(":");
                 
                 if(credencials.length >= 2) {
-                    System.out.println("================ Testing " + ++cnt + "/" + lines + " ================");
-                    checkAccount(credencials[0].trim(), credencials[1].trim());
-                    System.out.println("================ ============= ================");
-                    System.out.println();
+                    cnt = prepareCheck(lines, cnt, credencials);
+                } else if (credencials.length == 1) {
+                    credencials = new String[] {line.trim(),line.trim()};
+                    cnt = prepareCheck(lines, cnt, credencials);
                 } else {
                     System.out.println("================ Error on Line " + ++cnt + "/" + lines + " ================");
                     System.out.println("Invalid Line: " + line);
                     System.out.println("================ ================ ================");
                 }
-                
                 
                 Thread.sleep(2000);
             }
@@ -103,5 +102,13 @@ public class TestAccount {
             e.printStackTrace();
         }
 
+    }
+
+    private static int prepareCheck(int lines, int cnt, String[] credencials) {
+        System.out.println("================ Testing " + ++cnt + "/" + lines + " ================");
+        checkAccount(credencials[0].trim(), credencials[1].trim());
+        System.out.println("================ ============= ================");
+        System.out.println();
+        return cnt;
     }
 }
